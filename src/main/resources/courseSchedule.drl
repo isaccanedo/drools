@@ -1,0 +1,14 @@
+package com.isaccanedo.drools.optaplanner
+
+import com.isaccanedo.drools.optaplanner.Lecture;
+import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScoreHolder;
+
+global HardSoftScoreHolder scoreHolder;
+
+rule "noNullRoomPeriod"
+    when
+        Lecture( roomNumber == null );
+        Lecture( period == null );
+    then
+        scoreHolder.addHardConstraintMatch(kcontext, -1);
+end
